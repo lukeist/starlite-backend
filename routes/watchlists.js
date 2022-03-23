@@ -69,7 +69,7 @@ watchlistsdRoutes.route("/update-watchlist/:id").post((req, response) => {
 
 // This section will help you delete a watchlist
 
-watchlistsdRoutes.route("/:id").delete((req, response) => {
+watchlistsdRoutes.route("/delete-watchlist/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
 
