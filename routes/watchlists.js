@@ -47,7 +47,7 @@ watchlistsdRoutes.route("/watchlists/add").post((req, response) => {
   });
 });
 
-// This section will help you  update a watchlist by id
+// This section will help you  update a watchlist's name & emoji by id
 watchlistsdRoutes.route("/update-watchlist/:id").post((req, response) => {
   let db_connect = dbo.getDb();
   let myquery = { _id: ObjectId(req.params.id) };
@@ -55,7 +55,7 @@ watchlistsdRoutes.route("/update-watchlist/:id").post((req, response) => {
     $set: {
       listName: req.body.listName,
       emoji: req.body.emoji,
-      tickers: req.body.tickers,
+      // tickers: req.body.tickers,
     },
   };
   db_connect
@@ -66,6 +66,28 @@ watchlistsdRoutes.route("/update-watchlist/:id").post((req, response) => {
       response.json(res);
     });
 });
+
+// This section will help you  update a watchlist's tickers by id
+watchlistsdRoutes
+  .route("/update-watchlist-tickers/:id")
+  .post((req, response) => {
+    let db_connect = dbo.getDb();
+    let myquery = { _id: ObjectId(req.params.id) };
+    let newvalues = {
+      $set: {
+        // listName: req.body.listName,
+        // emoji: req.body.emoji,
+        tickers: req.body.tickers,
+      },
+    };
+    db_connect
+      .collection("watchlists")
+      .updateOne(myquery, newvalues, (err, res) => {
+        if (err) throw err;
+        console.log("1 watch list updated");
+        response.json(res);
+      });
+  });
 
 // This section will help you delete a watchlist
 
