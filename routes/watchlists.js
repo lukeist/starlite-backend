@@ -40,6 +40,7 @@ watchlistsdRoutes.route("/watchlists/add").post((req, response) => {
     listName: req.body.listName,
     emoji: req.body.emoji,
     tickers: req.body.tickers,
+    tickersWithQuotes: req.body.tickersWithQuotes, // this only for using redux state
   };
   db_connect.collection("watchlists").insertOne(myobj, (err, res) => {
     if (err) throw err;
