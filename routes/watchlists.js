@@ -39,7 +39,7 @@ watchlistsdRoutes.route("/watchlists/add").post((req, response) => {
   let myobj = {
     listName: req.body.listName,
     emoji: req.body.emoji,
-    tickers: req.body.tickersInDatabase,
+    tickersInDatabase: req.body.tickersInDatabase,
   };
   db_connect.collection("watchlists").insertOne(myobj, (err, res) => {
     if (err) throw err;
@@ -55,7 +55,7 @@ watchlistsdRoutes.route("/update-watchlist/:id").post((req, response) => {
     $set: {
       listName: req.body.listName,
       emoji: req.body.emoji,
-      // tickers: req.body.tickersInDatabase,
+      // tickersInDatabase: req.body.tickersInDatabase,
     },
   };
   db_connect
@@ -77,7 +77,7 @@ watchlistsdRoutes
       $set: {
         // listName: req.body.listName,
         // emoji: req.body.emoji,
-        tickers: req.body.tickersInDatabase,
+        tickersInDatabase: req.body.tickersInDatabase,
       },
     };
     db_connect
